@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -32,10 +33,14 @@ h1 .g{color:#22c55e} h1 .y{color:#facc15}
 .features div{background:#1a1a1a;border:1px solid #333;border-radius:16px;padding:14px;text-align:center}
 .features div b{display:block;font-size:13px;margin:6px 0 2px}
 .features div p{font-size:11.5px;color:#9db0a5}
+.articles{max-width:700px;margin:20px auto;padding:0 16px}
+.articles h2{font-size:20px;margin-bottom:12px}
+.art{background:#11221a;border:1px solid #333;border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer}
+.art b{font-size:14px;color:#fff}
+.art p{font-size:12.5px;color:#9db0a5;margin-top:4px}
 .foot{text-align:center;color:#f5c77a;margin:28px 0 22px;font-size:13px}
 .foot small{display:block;color:#6b7f72;margin-top:4px}
 .foot button{background:#1a3325;border:1px solid #2a4d36;color:#fff;padding:9px 16px;border-radius:100px;cursor:pointer;font-size:13px;margin:6px 4px}
-.foot button:active{background:#22c55e}
 .tag{display:inline-block;background:#22c55e;color:#fff;font-size:11px;padding:3px 10px;border-radius:100px;margin-bottom:8px;font-weight:700}
 @media(max-width:600px){h1{font-size:38px}.features{grid-template-columns:1fr 1fr}}
 </style>
@@ -47,71 +52,73 @@ h1 .g{color:#22c55e} h1 .y{color:#facc15}
 <div class="trend"><b style="font-size:12px;color:#facc15">🔥 Trending:</b><span onclick="quick('Chand ki doori')">🌙 Chand ki doori</span><span onclick="quick('Sachin Tendulkar')">🏏 Sachin</span><span onclick="quick('Taj Mahal')">🕌 Taj Mahal</span><span onclick="quick('PM Awas Yojana')">🏛️ PM Awas</span></div>
 <input type="file" id="file" accept="image/*" hidden onchange="handleImage(this)">
 <div id="preview"><img id="imgPrev"></div>
-<div id="ans">👋 <b style="color:#fff">Namaste! Main VishwaGyaan hu.</b><br>Photo daalo, main bataunga usme kya hai. Ya upar kuch bhi likh ke pucho.<br><br><b>Book wala sawal:</b> Pehle upar likho - <i>"Iska Q.5 batao"</i> - fir 📷 se photo daalo.<br><br>Neeche <b>About Us</b> dabake dekho, ab pakka khulega.</div>
+<div id="ans">👋 <b style="color:#fff">Namaste! Main VishwaGyaan hu.</b><br>Photo daalo, main bataunga usme kya hai. Ya upar kuch bhi likh ke pucho.<br><br>Neeche <b>20 Article</b> hai, kisi pe bhi click karo pura padh sakte ho.</div>
 <div class="features"><div>🔍<b>Instant Search</b><p>Har sawal ka turant jawab</p></div><div>📷<b>Photo AI</b><p>Photo dekh ke pehchanega</p></div><div>🎤<b>Voice Search</b><p>Bol ke bhi pooch sakte ho</p></div></div>
+
+<div class="articles"><h2>📚 Latest Articles - Padhai, Yojana aur GK</h2><div id="artList"></div></div>
+
 <div class="foot">Created by Ajay Kumar<small>Made with ❤️ in India • VishwaGyaan</small><br><button onclick="showPage('about')">About Us</button><button onclick="showPage('privacy')">Privacy Policy</button><button onclick="showPage('contact')">Contact Us</button></div>
 <script>
 function quick(t){document.getElementById('q').value=t;searchNow();}
-
-// ===== ABOUT / PRIVACY / CONTACT - PAKKA KAAM KAREGA =====
 function showPage(p){
-var box=document.getElementById('ans');
-window.scrollTo({top:280,behavior:'smooth'});
-if(p==='about'){
-box.innerHTML='<span class="tag">ABOUT US</span><br><b style="color:#fff;font-size:18px">VishwaGyaan - Har Sawal Ka Sahi Jawab</b><br><br>Namaste! Mera naam <b style="color:#fff">Ajay Kumar</b> hai. Main Lucknow, Uttar Pradesh se hu.<br><br><b>Humne ye site kyu banayi?</b><br>Gaon aur chhote shehar ke bachhon ko padhai, sarkari yojana aur har sawal ka jawab aasan Hindi me mile, isliye maine VishwaGyaan banaya.<br><br><b>Is site pe kya milega?</b><br>✅ Class 6-12 - Maths, Science, Hindi, English, SST, Sanskrit<br>✅ GK - Capital, Itihas, Bhugol<br>✅ Sarkari Yojana - PM Awas, Ayushman, Ration Card, Scholarship<br>✅ Photo se Sawal - Book ki photo daalo, jawab pao<br><br>Hamara maksad - <b style="color:#fff">Har bachhe tak sahi jaankari, aasan bhasha me, bilkul FREE me pahuche.</b>';
-return;
-}
-if(p==='privacy'){
-box.innerHTML='<span class="tag">PRIVACY POLICY</span><br><b style="color:#fff;font-size:18px">Privacy Policy - VishwaGyaan</b><br><br><b>Last Updated:</b> 8 November 2026<br><br><b>1. Hum kya data lete hain?</b><br>Hum aapka naam, password nahi maangte.<br><br><b>2. Photo ka kya hota hai?</b><br>Aapki photo sirf aapke phone me padhi jati hai, server pe save nahi hoti.<br><br><b>3. Cookies & Ads</b><br>Google AdSense ke liye cookies use ho sakti hain.<br><br><b>4. Bachhon ki suraksha</b><br>Hum bachhon se koi personal jaankari nahi maangte.';
-return;
-}
-if(p==='contact'){
-box.innerHTML='<span class="tag">CONTACT US</span><br><b style="color:#fff;font-size:18px">Humse Sampark Karein</b><br><br><b>Naam:</b> Ajay Kumar<br><b>Shehar:</b> Lucknow, Uttar Pradesh, India<br><b>Site:</b> VishwaGyaan<br><b>Email:</b> Apni email yahan daal dena<br><br><b>Kis liye sampark karein?</b><br>✅ Galat jawab ki shikayat<br>✅ Naya topic add karwana<br>✅ Ad / Promotion<br>✅ Koi sujhav<br><br>Hum 24-48 ghante me jawab dene ki koshish karenge.';
-return;
-}
+var box=document.getElementById('ans');window.scrollTo({top:280,behavior:'smooth'});
+if(p==='about'){box.innerHTML='<span class="tag">ABOUT US</span><br><b style="color:#fff;font-size:18px">VishwaGyaan - Har Sawal Ka Sahi Jawab</b><br><br>Namaste! Mera naam <b style="color:#fff">Ajay Kumar</b> hai. Main Lucknow, Uttar Pradesh se hu.<br><br><b>Humne ye site kyu banayi?</b><br>Gaon aur chhote shehar ke bachhon ko padhai, sarkari yojana aur har sawal ka jawab aasan Hindi me mile, isliye maine VishwaGyaan banaya.<br><br><b>Is site pe kya milega?</b><br>✅ Class 6-12 - Maths, Science, Hindi, English, SST<br>✅ GK - Capital, Itihas, Bhugol<br>✅ Sarkari Yojana - PM Awas, Ayushman, Ration Card<br>✅ Photo se Sawal';return;}
+if(p==='privacy'){box.innerHTML='<span class="tag">PRIVACY POLICY</span><br><b style="color:#fff;font-size:18px">Privacy Policy - VishwaGyaan</b><br><br><b>Last Updated:</b> 8 November 2026<br><br><b>1. Hum kya data lete hain?</b><br>Hum aapka naam, password nahi maangte.<br><br><b>2. Photo ka kya hota hai?</b><br>Aapki photo sirf aapke phone me padhi jati hai, server pe save nahi hoti.<br><br><b>3. Cookies & Ads</b><br>Google AdSense ke liye cookies use ho sakti hain.<br><br><b>4. Contact:</b> Vishwagyaan.help@gmail.com';return;}
+if(p==='contact'){box.innerHTML='<span class="tag">CONTACT US</span><br><b style="color:#fff;font-size:18px">Humse Sampark Karein</b><br><br><b>Naam:</b> Ajay Kumar<br><b>Shehar:</b> Lucknow, Uttar Pradesh, India<br><b>Site:</b> VishwaGyaan<br><b>Email:</b> <b style="color:#fff">Vishwagyaan.help@gmail.com</b><br><br><b>Kis liye sampark karein?</b><br>✅ Galat jawab ki shikayat<br>✅ Naya topic add karwana<br>✅ Ad / Promotion<br>✅ Koi sujhav<br><br>Hum 24-48 ghante me jawab dene ki koshish karenge.<br><br><small style="color:#f5c77a">Dhanyavaad - Team VishwaGyaan</small>';return;}
 }
 
-// ===== KNOWLEDGE DATABASE =====
+// ===== 20 ARTICLES =====
+var ARTICLES=[
+{t:'1. PM Awas Yojana 2026 - Ghar Kaise Milega?',d:'1.20 Lakh - 2.50 Lakh tak madad, kaun le sakta hai, kaise bhare',c:'<b>PM Awas Yojana me kya milta hai?</b><br>Ghar banane ke liye 1.20 Lakh se 2.50 Lakh tak madad milti hai.<br><br><b>Kaun le sakta hai?</b><br>Jiske paas pakka ghar nahi hai, BPL / Garib parivar.<br><br><b>Kaise bhare?</b><br>pmaymis.gov.in pe ya CSC / Panchayat me form bharo.<br><br><b>Kagaz:</b> Aadhaar, Ration Card, Bank Passbook, Photo.'},
+{t:'2. Ayushman Bharat Card Kaise Banaye?',d:'5 Lakh tak FREE ilaj, poora process Hindi me',c:'<b>Kya milta hai?</b> 5 Lakh tak FREE ilaj har saal.<br><br><b>Kaun banwa sakta hai?</b> Garib / BPL parivar, 70+ ke sabhi bujurg.<br><br><b>Kaise banaye?</b> CSC centre pe jao, Aadhaar le jao, 10 minute me ban jayega.<br><br><b>Website:</b> pmjay.gov.in'},
+{t:'3. PM Kisan Yojana - 6000₹ Kab Aayega?',d:'Kist ka status kaise check kare, e-KYC kyu zaroori hai',c:'<b>Kya milta hai?</b> Saal me 6000₹ - 2000-2000 ki 3 kist.<br><br><b>Status kaise check kare?</b> pmkisan.gov.in pe jao > Status > Aadhaar daalo.<br><br><b>Paisa kyu rukta hai?</b> 90% baar e-KYC na hone se rukta hai. CSC pe e-KYC kara lo.'},
+{t:'4. Ration Card Me Naam Kaise Jode?',d:'Naya ration card, naam jodna, naam hatana - sab kuch',c:'<b>Naya Card:</b> Food Supply site pe ya Tehsil me form bharo.<br><br><b>Naam Jodna:</b> Family ID me Add Member pe click karo, bachhe ka Aadhaar daalo.<br><br><b>Kagaz:</b> Aadhaar, Photo, Niwas Praman Patra.'},
+{t:'5. Free Silai Machine Yojana 2026',d:'Mahilaon ko FREE machine ya 15000₹ - kaise milega',c:'<b>Kya milta hai?</b> FREE Silai Machine ya 15000₹ ki madad.<br><br><b>Kaun?</b> 20-40 saal ki mahila, garib parivar.<br><br><b>Kaise?</b> CSC pe ya pmvishwakarma.gov.in pe form bharo.'},
+{t:'6. Scholarship 2026 - Padhai Ke Liye Paisa',d:'2000₹ se 25000₹ tak scholarship kaise le',c:'<b>Kya milta hai?</b> 2000₹ - 25000₹ saal.<br><br><b>Kahan bhare?</b> scholarships.gov.in ya UP me scholarship.up.gov.in<br><br><b>Zaroori:</b> Aadhaar, Income Certificate, Marksheet, Bank Account.'},
+{t:'7. 10th Ke Baad Kya Kare? - Best Career',d:'Science, Commerce, Arts, ITI - kisme jyada paisa hai',c:'<b>Science:</b> Doctor / Engineer banna hai toh.<br><b>Commerce:</b> CA / Bank / Business ke liye.<br><b>Arts:</b> IAS / Teacher / Police ke liye.<br><b>ITI / Polytechnic:</b> Jaldi naukri chahiye toh sabse best.'},
+{t:'8. Pythagoras Theorem - Aasan Trick Se Samjho',d:'Class 10 Maths ka sabse aasan chapter',c:'<b>Formula:</b> a² + b² = c²<br><br><b>Matlab:</b> Samkon Tribhuj me Lamba² + Aadhar² = Karna²<br><br><b>Example:</b> 3, 4 => Karna = 5<br><br><b>Yaad karne ki trick:</b> 3-4-5, 5-12-13, 8-15-17'},
+{t:'9. Photosynthesis Kya Hai? - Class 10 Biology',d:'Prakash Sanshleshan aasan Hindi me',c:'Paudhe Surya ke prakash, paani aur CO2 se apna bhojan banate hain, isi ko Photosynthesis kehte hain.<br><br><b>Equation:</b> 6CO2 + 6H2O + Prakash → C6H12O6 + 6O2<br><br><b>Kahan hota hai?</b> Patton me - Chlorophyll me.'},
+{t:'10. Newton Ke 3 Niyam - Example Ke Saath',d:'Physics ka sabse important topic',c:'<b>1st:</b> Vastu apni sthiti banaye rakhegi jab tak bal na lage.<br><b>2nd:</b> F = m x a<br><b>3rd:</b> Har kriya ke barabar vipreet pratikriya. Example: Rocket upar jata hai, gas neeche.'},
+{t:'11. Hindi Sandhi Aur Samas - Pura Vyakaran',d:'Sandhi ke 3 prakar, Samas ke 6 prakar',c:'<b>Sandhi:</b> Do varnon ke mel se vikar.<br>Swar: Vidya + Alay = Vidyalay<br>Vyanjan: Sat + Jan = Sajjan<br><br><b>Samas:</b> Tatpurush - Rajkumar, Dwandwa - Maa-Baap, Bahuvrihi - Dashanan = Ravan'},
+{t:'12. Tense - 12 Tenses Ek Baar Me Yaad Karo',d:'English Grammar ka sabse aasan trick',c:'<b>3 Main:</b> Present, Past, Future - Har ke 4 = 12<br><br><b>Trick:</b> is/am/are + V1+ing = Continuous<br>has/have + V3 = Perfect<br><br><b>Example:</b> I play / I am playing / I have played.'},
+{t:'13. Bharat Ke Sabhi Rajyon Ki Capital',d:'28 Rajya + 8 UT - Ek hi jagah poori list',c:'UP-Lucknow, Bihar-Patna, MP-Bhopal, Rajasthan-Jaipur, Gujarat-Gandhinagar, Maharashtra-Mumbai, Kerala-Thiruvananthapuram, Karnataka-Bengaluru, Tamil Nadu-Chennai, Andhra-Amaravati, Telangana-Hyderabad, Punjab-Chandigarh, Haryana-Chandigarh, Odisha-Bhubaneswar, Assam-Dispur, WB-Kolkata, Jharkhand-Ranchi, Chhattisgarh-Raipur, Goa-Panaji, HP-Shimla, Uttarakhand-Dehradun'},
+{t:'14. Taj Mahal - Itihas, Kisne Banwaya, Kab Bana',d:'Agra ka Taj Mahal - poori kahani',c:'<b>Kahan:</b> Agra, UP - Yamuna kinare<br><b>Kisne banwaya:</b> Shahjahan ne apni patni Mumtaz ke liye<br><b>Kab:</b> 1632-1653, 22 saal me bana, 20,000 majdoor lage.'},
+{t:'15. Sachin Tendulkar - God Of Cricket',d:'100 Century wala eklauta player',c:'<b>Janm:</b> 24 April 1973, Mumbai<br><b>Record:</b> 100 Century - Duniya me eklaute<br><b>Bharat Ratna:</b> 2014 me mila<br><b>Naam:</b> Master Blaster'},
+{t:'16. Chandrayaan 3 - India Ne Kya Kiya?',d:'South Pole pe land karne wala pehla desh',c:'<b>Date:</b> 23 Aug 2023<br><b>Kya kiya:</b> India ne Chand ke South Pole pe land kiya - Duniya me pehla desh.<br><br><b>Doori:</b> Dharti se Chand 3,84,400 km door hai.'},
+{t:'17. Samvidhan - Kab Lagu Hua, Kisne Banaya',d:'26 Jan 1950 - Poori jaankari',c:'<b>Lagu:</b> 26 Jan 1950 ko<br><b>Nirmata:</b> Dr. B.R. Ambedkar<br><br><b>6 Adhikar:</b> Samta, Swatantrata, Shoshan ke viruddha, Dharmik, Sanskriti, Samvaidhanik Upchar'},
+{t:'18. PM Ujjwala Yojana - Free Gas Connection',d:'FREE Gas kaise milega, kaun le sakta hai',c:'<b>Kya milta hai?</b> FREE Gas Connection + pehla cylinder.<br><br><b>Kaun?</b> BPL / Garib mahila.<br><br><b>Kaise?</b> Gas Agency pe ya pmuy.gov.in pe form bharo.'},
+{t:'19. Aadhaar, PAN, Voter Card Kaise Banaye?',d:'Teeno card ka aasan process',c:'<b>PAN Card:</b> nsdl site pe 107₹ me, 7 din me aata hai.<br><b>Aadhaar Update:</b> myaadhaar.uidai.gov.in pe mobile / address badlo.<br><b>Voter Card:</b> voters.eci.gov.in pe naya banao.'},
+{t:'20. Aaj Ka Suvichar Aur Motivation',d:'Roz padhne layak 3 best vichar',c:'<b>"Mehnat itni khamoshi se karo ki safalta shor macha de."</b><br><br><b>"Sapne wo nahi jo neend me aaye, sapne wo hain jo neend na aane de."</b> - Kalam<br><br><b>"Kal ka sabse achha waqt aaj hai."</b>'}
+];
+function renderArts(){
+var h='';
+for(var i=0;i<ARTICLES.length;i++){
+h+='<div class="art" onclick="openArt('+i+')"><b>'+ARTICLES[i].t+'</b><p>'+ARTICLES[i].d+'</p></div>';
+}
+document.getElementById('artList').innerHTML=h;
+}
+function openArt(i){
+var box=document.getElementById('ans');window.scrollTo({top:280,behavior:'smooth'});
+box.innerHTML='<span class="tag">ARTICLE</span><br><b style="color:#fff;font-size:18px">'+ARTICLES[i].t+'</b><br><br>'+ARTICLES[i].c+'<br><br><small style="color:#f5c77a">✓ VishwaGyaan - Sahi Jaankari</small>';
+}
+renderArts();
+
+// ===== SEARCH / PHOTO / MIKE =====
 function getAnswer(q){
 var s=q.toLowerCase().trim();
-// Maths Calc
 var c=q.replace(/×/g,'*').replace(/÷/g,'/').replace(/x/g,'*');
 if(/^[0-9\s\+\-\*\/\(\)\.]+$/.test(c) && /\d/.test(c) && /[\+\-\*\/]/.test(c)){
-try{var a=Function('"use strict";return ('+c+')')();return '<span class="tag">🧮 MATHS</span><br><b style="color:#fff;font-size:17px">'+q+' = '+a+'</b><br><br>✅ BODMAS se solve kiya.';}catch(e){}
+try{var a=Function('"use strict";return ('+c+')')();return '<span class="tag">🧮 MATHS</span><br><b style="color:#fff;font-size:17px">'+q+' = '+a+'</b>';}catch(e){}
 }
+for(var i=0;i<ARTICLES.length;i++){if(s.length>3 && ARTICLES[i].t.toLowerCase().includes(s.slice(0,8))){return '<span class="tag">ARTICLE</span><br><b style="color:#fff;font-size:17px">'+ARTICLES[i].t+'</b><br><br>'+ARTICLES[i].c;}}
 var DB=[
-{k:['kerala'],t:'Kerala ki Capital',b:'<b style="color:#fff;font-size:18px">Thiruvananthapuram</b><br><b>Bhasha:</b> Malayalam<br><b>Famous:</b> Backwaters, Kathakali, Ayurveda'},
-{k:['uttar pradesh','up'],t:'Uttar Pradesh ki Capital',b:'<b style="color:#fff;font-size:18px">Lucknow</b> - Nawabon ka Shehar<br><b>Famous:</b> Taj Mahal (Agra), Kashi, Ayodhya'},
-{k:['maharashtra'],t:'Maharashtra ki Capital',b:'<b style="color:#fff;font-size:18px">Mumbai</b> - Desh ki Aarthik Rajdhani'},
-{k:['gujarat'],t:'Gujarat ki Capital',b:'<b style="color:#fff;font-size:18px">Gandhinagar</b><br>Note: Sabse bada shehar Ahmedabad hai.'},
-{k:['rajasthan'],t:'Rajasthan ki Capital',b:'<b style="color:#fff;font-size:18px">Jaipur</b> - Pink City'},
-{k:['madhya pradesh'],t:'Madhya Pradesh ki Capital',b:'<b style="color:#fff;font-size:18px">Bhopal</b> - Jheelon ka Shehar'},
-{k:['bihar'],t:'Bihar ki Capital',b:'<b style="color:#fff;font-size:18px">Patna</b>'},
-{k:['west bengal'],t:'West Bengal ki Capital',b:'<b style="color:#fff;font-size:18px">Kolkata</b>'},
-{k:['tamil nadu'],t:'Tamil Nadu ki Capital',b:'<b style="color:#fff;font-size:18px">Chennai</b>'},
-{k:['karnataka'],t:'Karnataka ki Capital',b:'<b style="color:#fff;font-size:18px">Bengaluru</b> - IT City'},
-{k:['punjab','haryana'],t:'Punjab / Haryana ki Capital',b:'<b style="color:#fff;font-size:18px">Chandigarh</b>'},
-{k:['delhi','india','bharat'],t:'Bharat ki Capital',b:'<b style="color:#fff;font-size:18px">New Delhi</b>'},
-{k:['pythagoras'],t:'Pythagoras Theorem',b:'<b>Formula:</b> a² + b² = c²<br><b>Example:</b> 3, 4 => Karna = <b style="color:#fff">5</b><br><b>Triplet:</b> 3-4-5, 5-12-13'},
-{k:['photosynthesis'],t:'Photosynthesis',b:'Paudhe Surya ke prakash, paani aur CO2 se bhojan banate hain.<br><b>Equation:</b> 6CO2 + 6H2O + Prakash → C6H12O6 + 6O2'},
-{k:['newton'],t:'Newton ke 3 Niyam',b:'<b>1st:</b> Vastu apni sthiti banaye rakhegi.<br><b>2nd:</b> F = m x a<br><b>3rd:</b> Har kriya ke barabar vipreet pratikriya.'},
-{k:['sandhi'],t:'Sandhi - Prakar',b:'<b>Swar:</b> Vidya + Alay = Vidyalay<br><b>Vyanjan:</b> Sat + Jan = Sajjan<br><b>Visarg:</b> Namah + Kar = Namaskar'},
-{k:['samas'],t:'Samas',b:'Tatpurush - Rajkumar<br>Karmdharay - Neelkamal<br>Dwandwa - Maa-Baap<br>Bahuvrihi - Dashanan = Ravan'},
-{k:['tense'],t:'Tense - 12 Tenses',b:'<b>3 Main:</b> Present, Past, Future<br><b>Trick:</b> is/am/are + V1+ing = Continuous'},
-{k:['pm awas','awas yojana'],t:'PM Awas Yojana 2026',b:'<b>Kya milta hai?</b> Ghar banane ke liye 1.20 Lakh - 2.50 Lakh tak madad.<br><b>Kaun?</b> Jiske paas pakka ghar nahi hai.<br><b>Kaise bhare?</b> pmaymis.gov.in pe ya CSC / Panchayat me.<br><b>Kagaz:</b> Aadhaar, Ration Card, Bank Passbook, Photo.'},
-{k:['ayushman'],t:'Ayushman Bharat Card',b:'<b>Kya milta hai?</b> 5 Lakh tak FREE ilaj har saal.<br><b>Kaun?</b> Garib / BPL parivar, 70+ ke sabhi bujurg.<br><b>Kaise?</b> CSC centre pe ya pmjay.gov.in pe.'},
-{k:['ration'],t:'Ration Card',b:'<b>Kaise banaye?</b> Food Supply site pe ya Tehsil me.<br><b>Kagaz:</b> Aadhaar, Photo, Niwas Praman Patra.<br><b>Naam jodna:</b> Family ID me Add Member karo.'},
-{k:['silai'],t:'Free Silai Machine Yojana',b:'<b>Kya milta hai?</b> FREE Silai Machine ya 15000₹ ki madad.<br><b>Kaun?</b> 20-40 saal ki mahila.<br><b>Kaise?</b> CSC pe ya pmvishwakarma.gov.in pe.'},
-{k:['pm kisan','kisan'],t:'PM Kisan Samman Nidhi',b:'<b>Kya milta hai?</b> Saal me 6000₹ - 2000-2000 ki 3 kist.<br><b>Check:</b> pmkisan.gov.in pe Status me Aadhaar daalo.<br><b>e-KYC zaroori hai.</b>'},
-{k:['scholarship'],t:'Scholarship 2026',b:'<b>Kya milta hai?</b> 2000₹ - 25000₹ saal.<br><b>Kahan?</b> scholarships.gov.in ya UP - scholarship.up.gov.in<br><b>Zaroori:</b> Aadhaar, Income Certificate, Marksheet.'},
-{k:['suvichar'],t:'Aaj Ka Suvichar',b:'<b>"Mehnat itni khamoshi se karo ki safalta shor macha de."</b><br><br><b>"Sapne wo nahi jo neend me aaye, sapne wo hain jo neend na aane de."</b> - Kalam'},
-{k:['taj mahal'],t:'Taj Mahal',b:'<b>Kahan:</b> Agra, UP<br><b>Kisne:</b> Shahjahan ne Mumtaz ke liye<br><b>Kab:</b> 1632-1653, 22 saal me bana'},
-{k:['sachin'],t:'Sachin Tendulkar',b:'<b>Naam:</b> Master Blaster<br><b>Janm:</b> 24 April 1973, Mumbai<br><b>Record:</b> 100 Century - Duniya me eklaute'},
-{k:['virat'],t:'Virat Kohli',b:'<b>Naam:</b> King Kohli<br><b>Janm:</b> 5 Nov 1988, Delhi<br><b>Famous:</b> Chase Master'},
-{k:['chand','moon'],t:'Chand Ki Doori',b:'<b>Doori:</b> Dharti se 3,84,400 km<br><b>Pehla aadmi:</b> Neil Armstrong - 1969<br><b>Chandrayaan 3:</b> 23 Aug 2023 - India ne South Pole pe land kiya.'},
-{k:['pasta'],t:'Pasta',b:'Italy ka famous khana, maida se banta hai.<br><b>Prakar:</b> White Sauce, Red Sauce, Masala Pasta'}
+{k:['kerala'],t:'Kerala ki Capital',b:'<b style="color:#fff;font-size:18px">Thiruvananthapuram</b><br><b>Bhasha:</b> Malayalam'},
+{k:['uttar pradesh','up'],t:'UP ki Capital',b:'<b style="color:#fff;font-size:18px">Lucknow</b>'},
+{k:['taj mahal'],t:'Taj Mahal',b:'Agra me hai, Shahjahan ne banwaya, 1632-1653 me bana.'},
+{k:['sachin'],t:'Sachin Tendulkar',b:'Master Blaster, 100 Century.'},
+{k:['pasta'],t:'Pasta',b:'Italy ka khana, maida se banta hai.'}
 ];
-for(var i=0;i<DB.length;i++){for(var j=0;j<DB[i].k.length;j++){if(s.includes(DB[i].k[j])){return '<span class="tag">VISHWAGYAAN</span><br><b style="color:#fff;font-size:17px">'+DB[i].t+'</b><br><br>'+DB[i].b;}}}
+for(var i=0;i<DB.length;i++){for(var j=0;j<DB[i].k.length;j++){if(s.includes(DB[i].k[j])) return '<span class="tag">VISHWAGYAAN</span><br><b style="color:#fff;font-size:17px">'+DB[i].t+'</b><br><br>'+DB[i].b;}}
 return null;
 }
 async function getWiki(q){
@@ -123,39 +130,39 @@ async function searchNow(){
 var q=document.getElementById('q').value.trim();if(!q) return;
 var box=document.getElementById('ans');box.innerHTML='Dhoondh raha hu...';
 var a=getAnswer(q);
-if(a){box.innerHTML=a+'<br><br><small style="color:#f5c77a">✓ VishwaGyaan - Sahi Jawab</small>';return;}
+if(a){box.innerHTML=a;return;}
 var d=await getWiki(q);
 if(d && d.extract){box.innerHTML='<b style="color:#fff;font-size:17px">'+d.title+'</b><br><br>'+d.extract;}
-else{box.innerHTML='<b style="color:#fff">'+q+'</b><br><br>Iska jawab nahi mila. Thoda alag likh ke pucho - jaise sirf "Kerala" likho.';}
+else{box.innerHTML='<b style="color:#fff">'+q+'</b><br><br>Iska jawab nahi mila. Neeche Article me dekh lo.';}
 }
 async function handleImage(inp){
 if(!inp.files[0]) return;
 var userQ=document.getElementById('q').value.trim();
 var f=inp.files[0];var im=document.getElementById('imgPrev');im.src=URL.createObjectURL(f);document.getElementById('preview').style.display='block';
-var box=document.getElementById('ans');box.innerHTML='📷 Photo mili... 5 second ruko, padh raha hu...';
+var box=document.getElementById('ans');box.innerHTML='📷 Photo mili... padh raha hu...';
 try{
 var txt='';try{var o=await Tesseract.recognize(f,'hin+eng');txt=o.data.text||'';}catch(e){}
 var cleanTxt=txt.replace(/\n/g,' ').trim();
 var combined=(cleanTxt+' '+userQ).trim();
 if(combined){
 var a=getAnswer(combined);
-if(a){box.innerHTML='<b style="color:#22c55e">✅ Book se padh liya:</b><br><br>📖 Photo me: "<b style="color:#facc15">'+cleanTxt.slice(0,250)+'</b>"<br><br>'+a;return;}
+if(a){box.innerHTML='<b style="color:#22c55e">✅ Book se padh liya:</b><br><br>'+a;return;}
 var d=await getWiki(userQ||cleanTxt.slice(0,60));
 if(d && d.extract){box.innerHTML='<b style="color:#22c55e">✅ Book se padh liya:</b><br><br>'+d.title+'<br><br>'+d.extract;return;}
-if(cleanTxt.length>10){box.innerHTML='<b style="color:#22c55e">✅ Photo padh li:</b><br><br>📖 Photo me ye likha hai:<br>"<b style="color:#fff">'+cleanTxt.slice(0,400)+'"';return;}
+if(cleanTxt.length>10){box.innerHTML='<b style="color:#22c55e">✅ Photo padh li:</b><br><br>"<b style="color:#fff">'+cleanTxt.slice(0,400)+'"';return;}
 }
-box.innerHTML='✅ Photo dekh li.<br><br>Photo saaf nahi hai ya text nahi mila. Dobara saaf photo daalo.';
-}catch(e){box.innerHTML='📷 Photo saaf nahi aayi, dobara try karo.';}
+box.innerHTML='✅ Photo dekh li. Saaf photo dobara daalo.';
+}catch(e){box.innerHTML='📷 Photo saaf nahi aayi.';}
 }
 function mic(){
 try{
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-if(!SR){document.getElementById('ans').innerHTML='🎤 Mike is browser me nahi chalega.<br>Chrome me kholo, wahan chalega.';return;}
+if(!SR){document.getElementById('ans').innerHTML='🎤 Mike is browser me nahi chalega. Chrome me kholo.';return;}
 var R=new SR();R.lang='hi-IN';
 document.getElementById('ans').innerHTML='🎤 Boliye... sun raha hu...';
 R.start();
 R.onresult=function(e){document.getElementById('q').value=e.results[0][0].transcript;searchNow();};
-R.onerror=function(){document.getElementById('ans').innerHTML='🎤 Permission nahi mili.<br>Chrome me 🔒 pe click karke Microphone - Allow karo.';};
+R.onerror=function(){document.getElementById('ans').innerHTML='🎤 Permission nahi mili. Chrome me 🔒 pe click karke Microphone Allow karo.';};
 }catch(e){document.getElementById('ans').innerHTML='🎤 Mike me problem hai. Chrome me kholo.';}
 }
 document.getElementById('q').addEventListener('keydown',function(e){if(e.key==='Enter')searchNow();});
